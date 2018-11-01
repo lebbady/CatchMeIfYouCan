@@ -37,39 +37,45 @@ main.js
 game.js
 
 - start();
+  - buildDOM;
+  - this.canvas;
+  - this.ctx;
+  - start loop;
 - updateAll();
 - drawAll();
 - finishGame();
 - gameOverCallback();
 - checkCollisionWithEnemy();
 - checkCollisionWithSafezone();
+- this.player;
+- this.enemy = [];
+- this.safezone;
 
 player.js
 
-- createPlayer();
-- updatePlayer();
-- drawPlayer();
 - x
 - y
 - size
+- updatePlayer();
+- drawPlayer();
 - checkCollisionWithEnemy();
 - checkCollisionWithSafezone();
 
 enemy.js
 
-- createEnemy();
-- updateEnemy();
-- drawEnemy();
 - x
 - y
 - size
+- updateEnemy();
+- drawEnemy();
+
 
 safezone.js
 
-- createSafezone();
 - x
 - y
 - size
+
 
 
 ## States y States Transitions
@@ -109,12 +115,13 @@ create files javascript
 - Game - addEventListener
 - Game - create player
 - Player - create
-- Player - directions
+- Player - directions-move
 - Game - player and enemies position
 - Game - clear
 - Game - create enemies
 - Enemy - create
 - Enemy - check if still in screen
+- Enemy - follow player
 - Game - collision + remove
 - Game - gameOver
 
