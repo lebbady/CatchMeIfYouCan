@@ -1,5 +1,4 @@
-# module1-project
-# Project's name
+# Catch Me If You Can
 
 ## Description
 Brief description of the project
