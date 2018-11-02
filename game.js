@@ -19,10 +19,6 @@ Game.prototype.start = function () {
   this.startLoop();
   this.gameIsOver = false;
 
-  setTimeout(function () {
-    this.gameIsOver = true;
-    this.finishGame();
-  }.bind(this),2000);
 
 }
 
@@ -30,15 +26,41 @@ Game.prototype.startLoop = function () {
 
   this.player = new Player(this.canvasElement, this.initialPositionPlayer);
 
+  this.handleKeyDown = function(event) {
+    if (event.key === 'ArrowUp') {
+      this.player.setDirection(-1);
+      this.player.moveVertical();
+
+    } else if (event.key === 'ArrowDown') {
+      this.player.setDirection(1);
+      this.player.moveVertical();
+
+    } else if (event.key === 'ArrowRight') {
+      this.player.setDirection(1);
+      this.player.moveHorizontal();
+
+    } else if (event.key === 'ArrowLeft') {
+      this.player.setDirection(-1);
+      this.player.moveHorizontal();
+
+    }
+  }.bind(this)
+
+  this.handleKeyUp = function(event) {
+    this.player.setDirection(0);
+  }
+  
+  document.addEventListener('keyup', this.handleKeyDown);
+  document.addEventListener('keyup',this.handleKeyDown);
 
 
   var loop = function() {
 
+    this.updateAll();
+    this.clearAll();
     this.drawAll();
-    //this.clearAll();
-    //this.updateAll();  
 
-  
+    
     if (!this.gameIsOver) {
       requestAnimationFrame(loop);
     }
