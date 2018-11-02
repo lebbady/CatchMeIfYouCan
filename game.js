@@ -28,30 +28,31 @@ Game.prototype.startLoop = function () {
 
   this.handleKeyDown = function(event) {
     if (event.key === 'ArrowUp') {
-      this.player.setDirection(-1);
-      this.player.moveVertical();
+      this.player.setDirectionY(-1);
+      // this.player.moveVertical();
 
     } else if (event.key === 'ArrowDown') {
-      this.player.setDirection(1);
-      this.player.moveVertical();
+      this.player.setDirectionY(1);
+      // this.player.moveVertical();
 
     } else if (event.key === 'ArrowRight') {
-      this.player.setDirection(1);
-      this.player.moveHorizontal();
+      this.player.setDirectionX(1);
+      // this.player.moveHorizontal();
 
     } else if (event.key === 'ArrowLeft') {
-      this.player.setDirection(-1);
-      this.player.moveHorizontal();
+      this.player.setDirectionX(-1);
+      // this.player.moveHorizontal();
 
     }
   }.bind(this)
 
   this.handleKeyUp = function(event) {
-    this.player.setDirection(0);
-  }
+    this.player.setDirectionX(0);
+    this.player.setDirectionY(0); 
+  }.bind(this)
   
-  document.addEventListener('keyup', this.handleKeyDown);
-  document.addEventListener('keyup',this.handleKeyDown);
+  document.addEventListener('keydown', this.handleKeyDown);
+  document.addEventListener('keyup',this.handleKeyUp);
 
 
   var loop = function() {
