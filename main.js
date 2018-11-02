@@ -42,7 +42,7 @@ function main() {
   function buildGameScreen() {
     gameScreen = buildDom(`
       <main>  
-        <canvas width="640px" height="480px"></canvas>   
+        <canvas width="500px" height="250px"></canvas>   
       </main>
     `);
 
@@ -52,8 +52,8 @@ function main() {
 
     var game = new Game(canvasElement);
     game.start();
+    game.onGameOverCallback(destroyGameScreen);
 
-    setTimeout(destroyGameScreen,2000);
  
   }
 
