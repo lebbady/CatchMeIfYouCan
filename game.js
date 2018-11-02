@@ -6,13 +6,17 @@ function Game(canvasElement) {
   this.enemies = [];
   this.canvasElement = canvasElement;
   this.gameIsOver = false;
+  this.initialPositionPlayer = {
+    x: 20,
+    y: this.canvasElement.height / 2
+  }
 }
 
 Game.prototype.start = function () {
 
   this.ctx = this.canvasElement.getContext('2d');
 
-  this.startLoop()
+  this.startLoop();
   this.gameIsOver = false;
 
   setTimeout(function () {
@@ -24,14 +28,15 @@ Game.prototype.start = function () {
 
 Game.prototype.startLoop = function () {
 
+  this.player = new Player(this.canvasElement, this.initialPositionPlayer);
+
+
+
   var loop = function() {
 
-    console.log('asd');
-    /*
-    this.updateAll();
-    this.clearAll();
     this.drawAll();
-    */
+    //this.clearAll();
+    //this.updateAll();  
 
   
     if (!this.gameIsOver) {
@@ -44,6 +49,18 @@ Game.prototype.startLoop = function () {
   loop();
 }
 
+Game.prototype.drawAll = function() {
+  this.player.draw();
+}
+
+Game.prototype.clearAll = function() {
+  this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
+}
+
+Game.prototype.updateAll = function() {
+  this.player.update();
+}
+
 Game.prototype.onGameOverCallback = function (callback) {
   this.gameOverCallback = callback;
 }
@@ -52,10 +69,5 @@ Game.prototype.finishGame = function () {
   this.gameOverCallback(); 
 }
 
-
-
-function updateAll(){}
-function clearAll(){}
-function drawAll(){}
 
 

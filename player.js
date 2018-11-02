@@ -15,5 +15,3 @@ Player.prototype.draw = function (){
   
 }
 
-// var player = new Player();
-// player.draw();
