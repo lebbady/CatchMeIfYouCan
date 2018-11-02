@@ -15,6 +15,11 @@ Game.prototype.start = function () {
   this.startLoop()
   this.gameIsOver = false;
 
+  setTimeout(function () {
+    this.gameIsOver = true;
+    this.finishGame();
+  }.bind(this),2000);
+
 }
 
 Game.prototype.startLoop = function () {
@@ -27,14 +32,10 @@ Game.prototype.startLoop = function () {
     this.clearAll();
     this.drawAll();
     */
-   setTimeout(function () {
-     this.gameIsOver = true;
-   }.bind(this),2000);
+
   
     if (!this.gameIsOver) {
       requestAnimationFrame(loop);
-    } else {
-      this.finishGame();
     }
   
   }.bind(this);
