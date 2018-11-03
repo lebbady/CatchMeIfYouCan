@@ -31,15 +31,15 @@ Player.prototype.setDirectionX = function (direction) {
   this.directionX = direction;
 }
 
-
-Player.prototype.moveHorizontal = function() {
-  this.x += this.speed * this.direction; 
-}
-
-Player.prototype.moveVertical = function() {
-  this.y += this.speed * this.direction;
-}
-
 Player.prototype.setDirection = function(direction) {
   this.direction = direction;
+}
+
+Player.prototype.collisionEnemy = function (enemy) {
+  var collisionTop = this.y - (this.height / 2) <= enemy.y + (enemy.height / 2);
+  var collisionBottom = this.y + (this.height / 2) >= enemy.y - (enemy.height / 2);
+  var collisionLeft = this.x - (this.width / 2) <= enemy.x + (enemy.width / 2);
+  var collisionRight = this.x + (this.width / 2) >= enemy.x - (enemy.width / 2);
+
+  return collisionTop && collisionBottom && collisionLeft && collisionRight;
 }

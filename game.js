@@ -10,6 +10,10 @@ function Game(canvasElement) {
     x: 20,
     y: this.canvasElement.height / 2
   }
+  this.initialPositionEnemy = {
+    x: 480,
+    y: 120
+  }
 }
 
 Game.prototype.start = function () {
@@ -25,6 +29,7 @@ Game.prototype.start = function () {
 Game.prototype.startLoop = function () {
 
   this.player = new Player(this.canvasElement, this.initialPositionPlayer);
+  this.enemy = new Enemy(this.canvasElement, this.initialPositionEnemy);
 
   this.handleKeyDown = function(event) {
     if (event.key === 'ArrowUp') {
@@ -57,6 +62,7 @@ Game.prototype.startLoop = function () {
 
   var loop = function() {
 
+    this.checkcollisionPlayerEnemy();
     this.updateAll();
     this.clearAll();
     this.drawAll();
@@ -64,7 +70,7 @@ Game.prototype.startLoop = function () {
     
     if (!this.gameIsOver) {
       requestAnimationFrame(loop);
-    }
+    } else {this.finishGame();}
   
   }.bind(this);
 
@@ -74,6 +80,7 @@ Game.prototype.startLoop = function () {
 
 Game.prototype.drawAll = function() {
   this.player.draw();
+  this.enemy.draw();
 }
 
 Game.prototype.clearAll = function() {
@@ -82,6 +89,7 @@ Game.prototype.clearAll = function() {
 
 Game.prototype.updateAll = function() {
   this.player.update();
+  this.enemy.update(this.player);
 }
 
 Game.prototype.onGameOverCallback = function (callback) {
@@ -92,5 +100,10 @@ Game.prototype.finishGame = function () {
   this.gameOverCallback(); 
 }
 
+Game.prototype.checkcollisionPlayerEnemy = function () {
+  if (this.player.collisionEnemy(this.enemy)) {
+    this.gameIsOver = true;
+  }
+}
 
 
