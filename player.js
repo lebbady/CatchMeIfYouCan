@@ -43,3 +43,12 @@ Player.prototype.collisionEnemy = function (enemy) {
 
   return collisionTop && collisionBottom && collisionLeft && collisionRight;
 }
+
+Player.prototype.collisionSafezone =  function (safezone) {
+  var collisionTopSafe = this.y  <= safezone.y + (safezone.height);
+  var collisionBottomSafe = this.y + (this.height) >= safezone.y;
+  var collisionLeftSafe = this.x <= safezone.x + (safezone.width);
+  var collisionRightSafe = this.x + (this.width) >= safezone.x;
+
+  return collisionTopSafe && collisionBottomSafe && collisionLeftSafe && collisionRightSafe;
+}

@@ -13,6 +13,7 @@ function main() {
   var gameScreen;
   var gameOverScreen;
   var restartButton;
+  var winScreen;
 
   // splash
 
@@ -53,6 +54,7 @@ function main() {
     var game = new Game(canvasElement);
     game.start();
     game.onGameOverCallback(destroyGameScreen);
+    game.onWinCallback(buildWinScreen);
 
  
   }
@@ -65,7 +67,7 @@ function main() {
   function buildGameOverScreen() {
     gameOverScreen = buildDom(`
       <main>
-        <h1>Game Over</h1>
+        <h1>Game Over. You got yourself caught, loser...</h1>
         <button>Restart</button>
       </main>  
     `);
@@ -83,6 +85,30 @@ function main() {
     
     gameOverScreen.remove();
     restartButton.removeEventListener('click', destroyGameOverScreen)
+
+    buildGameScreen();
+  }
+
+  function buildWinScreen() {
+    winScreen = buildDom(`
+      <main>
+        <h1>Congratulations, you made it to the Safezone!!</h1>
+        <button>Restart</button>
+      </main>  
+    `);
+
+    gameScreen.remove();
+    document.body.prepend(winScreen);
+
+    restartButton = document.querySelector('button');
+
+    restartButton.addEventListener('click', destroyWinScreen);
+  }
+
+  function destroyWinScreen() {
+    
+    winScreen.remove();
+    restartButton.removeEventListener('click', destroyWinScreen);
 
     buildGameScreen();
   }
