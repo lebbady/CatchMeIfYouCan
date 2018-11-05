@@ -18,6 +18,9 @@ function Game(canvasElement) {
     x: 400,
     y: 120
   }
+  this.width = 0;
+  this.height = 0;
+  this.color = 'black';
 }
 
 Game.prototype.start = function () {
@@ -39,34 +42,48 @@ Game.prototype.startLoop = function () {
   this.handleKeyDown = function(event) {
     if (event.key === 'ArrowUp') {
       this.player.setDirectionY(-1);
-      // this.player.moveVertical();
 
     } else if (event.key === 'ArrowDown') {
       this.player.setDirectionY(1);
-      // this.player.moveVertical();
 
     } else if (event.key === 'ArrowRight') {
       this.player.setDirectionX(1);
-      // this.player.moveHorizontal();
 
     } else if (event.key === 'ArrowLeft') {
       this.player.setDirectionX(-1);
-      // this.player.moveHorizontal();
 
     }
   }.bind(this)
+
+  this.changeToAttackMode = function(event) {
+    if (event.key === 'a') {
+      this.width = 8;
+      this.height = 2;
+      this.color = 'blue';
+      setTimeout(this.backToNormalMode,3000);
+    }
+  }.bind(this)
+
+  this.backToNormalMode = function(event) {
+    this.width = 0;
+    this.height = 0;
+    this.color = 'black';
+  }.bind(this)
+
 
   this.handleKeyUp = function(event) {
     this.player.setDirectionX(0);
     this.player.setDirectionY(0); 
   }.bind(this)
+
   
   document.addEventListener('keydown', this.handleKeyDown);
   document.addEventListener('keyup',this.handleKeyUp);
-
+  document.addEventListener('keydown',this.changeToAttackMode);
 
   var loop = function() {
 
+    this.checkCollisionAttackModeEnemy();
     this.checkCollisionPlayerSafezone();
     this.checkCollisionPlayerEnemy();
     this.updateAll();
@@ -80,6 +97,8 @@ Game.prototype.startLoop = function () {
       this.finishGame();
     } else if (this.gameIsOver === 2) {
       this.winGame();
+    } else if (this.gameIsOver === 3) {
+      this.winGame();
     }
   
   }.bind(this);
@@ -89,7 +108,7 @@ Game.prototype.startLoop = function () {
 }
 
 Game.prototype.drawAll = function() {
-  this.player.draw();
+  this.player.draw(this.width,this.height,this.color);
   this.enemy.draw();
   this.safezone.draw();
 }
@@ -121,6 +140,12 @@ Game.prototype.checkCollisionPlayerEnemy = function () {
 Game.prototype.checkCollisionPlayerSafezone = function () {
   if (this.player.collisionSafezone(this.safezone)) {
     this.gameIsOver = 2;
+  }
+}
+
+Game.prototype.checkCollisionAttackModeEnemy = function () {
+  if (this.player.collisionAttackMode(this.enemy)) {
+    this.gameIsOver = 3;
   }
 }
 
