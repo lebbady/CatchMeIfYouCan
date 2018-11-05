@@ -18,25 +18,25 @@ Enemy.prototype.draw = function (){
 
 Enemy.prototype.update = function (player) {
   if (player.y === this.y && player.x >= this.x){
-    this.x += 0;
+    this.x += 2.5;
   } else if (player.y === this.y && player.x <= this.x){
-    this.x -= 0;
+    this.x -= 2.5;
   } else if (player.x === this.x && player.y <= this.y){
-    this.y -= 0;
+    this.y -= 2.5;
   } else if (player.x === this.x && player.y >= this.y){
-    this.y += 0;
+    this.y += 2.5;
   } else if (player.y <= this.y && player.x <= this.x){
-    this.x -= 0;
-    this.y -= 0;
+    this.x -= 2.5;
+    this.y -= 2.5;
   } else if (player.y <= this.y && player.x >= this.x){
-    this.x += 0;
-    this.y -= 0;
+    this.x += 2.5;
+    this.y -= 2.5;
   }else if (player.x >= this.x && player.y >= this.y){
-    this.y += 0;
-    this.x += 0;
+    this.y += 2.5;
+    this.x += 2.5;
   }else if (player.x <= this.x && player.y >= this.y){
-    this.y += 0;
-    this.x -= 0;
+    this.y += 2.5;
+    this.x -= 2.5;
   }
 
 }

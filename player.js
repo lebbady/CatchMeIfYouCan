@@ -5,18 +5,37 @@ function Player (canvasElement, initialPosition) {
   this.y = initialPosition.y;
   this.width = 6;
   this.height = 6;
-  this.speed = 1;
+  this.speed = 5;
   this.directionY = 0;
   this.directionX = 0;
   this.canvasElement = canvasElement;
   this.ctx = this.canvasElement.getContext('2d');
+  this.attack = false;
 }
 
-Player.prototype.draw = function (width, height, color){
-  this.ctx.fillStyle = color;
-  this.ctx.fillRect(this.x,this.y,this.width + width,this.height - height);
+Player.prototype.draw = function (){
+  this.ctx.fillStyle = 'black';
+  this.ctx.fillRect(this.x,this.y,this.width,this.height);
   
 }
+
+/*
+
+Player.prototype.attack = function () {
+  this.attack = true;
+  this.ctx.fillStyle = 'blue';
+  this.width = this.width + 4;
+  this.height = this.height -2;
+}
+
+Player.prototype.backToNormal = function () {
+  this.attack = false;
+  this.ctx.fillStyle = 'black';
+  this.width = this.width - 4;
+  this.height = this.height + 2;
+}
+
+*/
 
 Player.prototype.update = function () {
 

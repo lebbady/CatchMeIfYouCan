@@ -18,9 +18,7 @@ function Game(canvasElement) {
     x: 400,
     y: 120
   }
-  this.width = 0;
-  this.height = 0;
-  this.color = 'black';
+
 }
 
 Game.prototype.start = function () {
@@ -55,20 +53,16 @@ Game.prototype.startLoop = function () {
     }
   }.bind(this)
 
+  /*
+
   this.changeToAttackMode = function(event) {
     if (event.key === 'a') {
-      this.width = 8;
-      this.height = 2;
-      this.color = 'blue';
-      setTimeout(this.backToNormalMode,3000);
+      this.player.attack();
+      setTimeout(this.player.backToNormal,3000);
     }
   }.bind(this)
 
-  this.backToNormalMode = function(event) {
-    this.width = 0;
-    this.height = 0;
-    this.color = 'black';
-  }.bind(this)
+  */
 
 
   this.handleKeyUp = function(event) {
