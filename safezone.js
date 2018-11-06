@@ -7,13 +7,13 @@ function Safezone (canvasElement, position, x, y) {
   this.height = 5;
   this.canvasElement = canvasElement;
   this.ctx = this.canvasElement.getContext('2d');
-  this.safezoneSpeed = 1;
+  this.safezoneSpeed = 2;
   this.xChasing = x;
   this.yChasing = y;
+  this.safezoneDirectionY = -1;
   this.chasingWidth = 0;
   this.chasingHeight = 0;
-  this.freeSafezone = true;
-  
+  this.level = 2;
 }
 
 Safezone.prototype.draw = function() {
@@ -25,23 +25,21 @@ Safezone.prototype.randomChasing = function () {
   this.ctx.fillRect(this.xChasing, this.yChasing, this.chasingWidth, this.chasingHeight);
 }
 
-Safezone.prototype.xRandom = function () {
-  
-}
-
-Safezone.prototype.yRandom = function () {
-  return 
-}
-
 
 
 Safezone.prototype.update = function() {
-  /*
-  if (level === 1) {
+  
+  if (this.level === 1) {
     this.x = this.x;
     this.y = this.y;
+    this.width = 20;
+    this.height = 20;
   }
-  if (level === 2) {
+  if (this.level === 2) {
+
+    this.width = 10;
+    this.height = 10;
+
     if(this.y === this.canvasElement.height - this.height) {
       this.safezoneDirectionY = -1;
     }
@@ -50,10 +48,10 @@ Safezone.prototype.update = function() {
     }
     this.y += this.safezoneSpeed * this.safezoneDirectionY;
   }
-  if (level === 3) {
-    */
-    
-    //console.log(this.yChasing);
+  if (this.level === 3) {
+
+    this.width = 5;
+    this.height = 5;
     
     if (this.yChasing === this.y && this.xChasing >= this.x){
       this.x += this.safezoneSpeed;
@@ -79,7 +77,7 @@ Safezone.prototype.update = function() {
     
     
 
-  //}
+  }
 
 }
 

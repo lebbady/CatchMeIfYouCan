@@ -54,13 +54,61 @@ function main() {
     var game = new Game(canvasElement);
     game.start();
     game.onGameOverCallback(destroyGameScreen);
-    game.onWinCallback(buildWinScreen);
+    game.secondLevel(buildGameScreen2);
 
+ 
+  }
+
+  function buildGameScreen2() {
+    gameScreen2 = buildDom(`
+      <main>  
+        <canvas width="1200px" height="600px"></canvas>   
+      </main>
+    `);
+
+    gameScreen.remove();
+    document.body.prepend(gameScreen2);
+
+    var canvasElement = document.querySelector('canvas');
+
+    var game = new Game(canvasElement);
+    game.start();
+    game.onGameOverCallback(destroyGameScreen);
+
+ 
+  }
+
+  function buildGameScreen3() {
+    gameScreen3 = buildDom(`
+      <main>  
+        <canvas width="1200px" height="600px"></canvas>   
+      </main>
+    `);
+
+    gameScreen2.remove();
+    document.body.prepend(gameScreen3);
+
+    var canvasElement = document.querySelector('canvas');
+
+    var game = new Game(canvasElement);
+    game.start();
+    game.onGameOverCallback(destroyGameScreen);
+    game.onWinCallback(buildWinScreen);
  
   }
 
   function destroyGameScreen() {
     gameScreen.remove();
+    buildGameOverScreen();
+  }
+
+  function destroyGameScreen2() {
+    gameScreen2.remove();
+    buildGameOverScreen();
+  }
+
+  function destroyGameScreen3() {
+    gameScreen3.remove();
     buildGameOverScreen();
   }
 
@@ -97,7 +145,7 @@ function main() {
       </main>  
     `);
 
-    gameScreen.remove();
+    gameScreen3.remove();
     document.body.prepend(winScreen);
 
     restartButton = document.querySelector('button');

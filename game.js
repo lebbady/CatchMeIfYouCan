@@ -30,20 +30,15 @@ Game.prototype.start = function () {
   this.startLoop();
   this.gameIsOver = 0;
 
-  console.log(this.canvasElement.width);
 
-  var randomX = function () {
+  var randomSafezoneMovement = function () {
     this.safezone.xChasing = Math.round(Math.random()* this.canvasElement.width);
-    console.log(this.xChasing);
+    this.safezone.yChasing = Math.round(Math.random()* this.canvasElement.height);
   }.bind(this)
 
-  var randomY = function () {
-    this.safezone.yChasing = Math.round(Math.random()* this.canvasElement.height);
-  }.bind(this);
+  var setIntervalId = setInterval(randomSafezoneMovement,1000);
+  
 
-  setInterval(randomX,1000);
-  setInterval(randomY, 1000);
-  console.log(this.xChasing);
 
 }
 
@@ -111,6 +106,7 @@ Game.prototype.drawAll = function() {
 }
 
 Game.prototype.clearAll = function() {
+  
   this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
 }
 
@@ -128,6 +124,14 @@ Game.prototype.finishGame = function () {
   this.gameOverCallback(); 
 }
 
+Game.prototype.secondLevel = function (callback) {
+  this.secondLevelCallback = callback;
+}
+
+Game.prototype.goToSecondLevel = function () {
+  this.secondLevelCallback();
+}
+
 Game.prototype.checkCollisionPlayerEnemy = function () {
   if (this.player.collisionEnemy(this.enemy)) {
     this.gameIsOver = 1;
@@ -136,7 +140,7 @@ Game.prototype.checkCollisionPlayerEnemy = function () {
 
 Game.prototype.checkCollisionPlayerSafezone = function () {
   if (this.player.collisionSafezone(this.safezone)) {
-    this.gameIsOver = 2;
+    this.safezone.level ++;
   }
 }
 
