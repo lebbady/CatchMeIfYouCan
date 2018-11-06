@@ -5,6 +5,7 @@ function Enemy (canvasElement, initialPosition) {
   this.y = initialPosition.y;
   this.width = 6;
   this.height = 6;
+  this.speed = 0;
   
   this.canvasElement = canvasElement;
   this.ctx = this.canvasElement.getContext('2d');
@@ -18,25 +19,25 @@ Enemy.prototype.draw = function (){
 
 Enemy.prototype.update = function (player) {
   if (player.y === this.y && player.x >= this.x){
-    this.x += 2.5;
+    this.x += this.speed;
   } else if (player.y === this.y && player.x <= this.x){
-    this.x -= 2.5;
+    this.x -= this.speed;
   } else if (player.x === this.x && player.y <= this.y){
-    this.y -= 2.5;
+    this.y -= this.speed;
   } else if (player.x === this.x && player.y >= this.y){
-    this.y += 2.5;
+    this.y += this.speed;
   } else if (player.y <= this.y && player.x <= this.x){
-    this.x -= 2.5;
-    this.y -= 2.5;
+    this.x -= this.speed;
+    this.y -= this.speed;
   } else if (player.y <= this.y && player.x >= this.x){
-    this.x += 2.5;
-    this.y -= 2.5;
+    this.x += this.speed;
+    this.y -= this.speed;
   }else if (player.x >= this.x && player.y >= this.y){
-    this.y += 2.5;
-    this.x += 2.5;
+    this.y += this.speed;
+    this.x += this.speed;
   }else if (player.x <= this.x && player.y >= this.y){
-    this.y += 2.5;
-    this.x -= 2.5;
+    this.y += this.speed;
+    this.x -= this.speed;
   }
 
 }

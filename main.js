@@ -43,7 +43,7 @@ function main() {
   function buildGameScreen() {
     gameScreen = buildDom(`
       <main>  
-        <canvas width="500px" height="250px"></canvas>   
+        <canvas width="1200px" height="600px"></canvas>   
       </main>
     `);
 

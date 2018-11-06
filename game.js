@@ -15,9 +15,11 @@ function Game(canvasElement) {
     y: 120
   }
   this.positionSafezone = {
-    x: 400,
-    y: 120
+    x: this.canvasElement.width/2,
+    y: this.canvasElement.height/2
   }
+  this.xChasing = 0;
+  this.yChasing = 0;
 
 }
 
@@ -28,6 +30,20 @@ Game.prototype.start = function () {
   this.startLoop();
   this.gameIsOver = 0;
 
+  console.log(this.canvasElement.width);
+
+  var randomX = function () {
+    this.safezone.xChasing = Math.round(Math.random()* this.canvasElement.width);
+    console.log(this.xChasing);
+  }.bind(this)
+
+  var randomY = function () {
+    this.safezone.yChasing = Math.round(Math.random()* this.canvasElement.height);
+  }.bind(this);
+
+  setInterval(randomX,1000);
+  setInterval(randomY, 1000);
+  console.log(this.xChasing);
 
 }
 
@@ -35,7 +51,7 @@ Game.prototype.startLoop = function () {
 
   this.player = new Player(this.canvasElement, this.initialPositionPlayer);
   this.enemy = new Enemy(this.canvasElement, this.initialPositionEnemy);
-  this.safezone = new Safezone(this.canvasElement, this.positionSafezone)
+  this.safezone = new Safezone(this.canvasElement, this.positionSafezone, this.yChasing, this.xChasing)
 
   this.handleKeyDown = function(event) {
     if (event.key === 'ArrowUp') {
@@ -53,31 +69,20 @@ Game.prototype.startLoop = function () {
     }
   }.bind(this)
 
-  /*
-
-  this.changeToAttackMode = function(event) {
-    if (event.key === 'a') {
-      this.player.attack();
-      setTimeout(this.player.backToNormal,3000);
-    }
-  }.bind(this)
-
-  */
 
 
   this.handleKeyUp = function(event) {
     this.player.setDirectionX(0);
     this.player.setDirectionY(0); 
   }.bind(this)
+  
 
   
   document.addEventListener('keydown', this.handleKeyDown);
   document.addEventListener('keyup',this.handleKeyUp);
-  document.addEventListener('keydown',this.changeToAttackMode);
 
   var loop = function() {
 
-    this.checkCollisionAttackModeEnemy();
     this.checkCollisionPlayerSafezone();
     this.checkCollisionPlayerEnemy();
     this.updateAll();
@@ -90,8 +95,6 @@ Game.prototype.startLoop = function () {
     } else if (this.gameIsOver === 1) {
       this.finishGame();
     } else if (this.gameIsOver === 2) {
-      this.winGame();
-    } else if (this.gameIsOver === 3) {
       this.winGame();
     }
   
@@ -134,12 +137,6 @@ Game.prototype.checkCollisionPlayerEnemy = function () {
 Game.prototype.checkCollisionPlayerSafezone = function () {
   if (this.player.collisionSafezone(this.safezone)) {
     this.gameIsOver = 2;
-  }
-}
-
-Game.prototype.checkCollisionAttackModeEnemy = function () {
-  if (this.player.collisionAttackMode(this.enemy)) {
-    this.gameIsOver = 3;
   }
 }
 
