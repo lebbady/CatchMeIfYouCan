@@ -22,9 +22,10 @@ function main() {
   function buildSplash() {
     
     splashMain = buildDom(`
-      <main>
-        <h1>Catch me if you can!</h1>
-        <button>Start</button>
+      <main class="buildSplash">
+        <h1 class="title">Catch me if you can!</h1>
+        <button class="start-button">Start</button>
+        <p class="instructions">Instructions: Use the arrow keys to get to the Safezone before getting caught by your chaser.</p>
       </main>
     `);
 
@@ -44,8 +45,8 @@ function main() {
 
   function buildGameScreen() {
     gameScreen = buildDom(`
-      <main>  
-        <canvas width="1000px" height="500px"></canvas>   
+      <main class="game-screen">  
+        <canvas class="canvas" width="1000px" height="500px"></canvas>   
       </main>
     `);
 
@@ -56,76 +57,21 @@ function main() {
     var game = new Game(canvasElement);
     game.start();
     game.onGameOverCallback(destroyGameScreen);
-    //game.secondLevel(buildGameScreen2);
     game.onWinCallback(buildWinScreen);
 
  
   }
 
-  /*
-  function buildGameScreen2() {
-    gameScreen2 = buildDom(`
-      <main>  
-        <canvas width="1000px" height="500px"></canvas>   
-      </main>
-    `);
-
-    gameScreen.remove();
-    document.body.prepend(gameScreen2);
-
-    var canvasElement = document.querySelector('canvas');
-
-    var game = new Game(canvasElement);
-    game.start();
-    game.onGameOverCallback(destroyGameScreen2);
-    game.thirdLevel(buildGameScreen3);
-
- 
-  }
-
-  function buildGameScreen3() {
-    gameScreen3 = buildDom(`
-      <main>  
-        <canvas width="1200px" height="600px"></canvas>   
-      </main>
-    `);
-
-    gameScreen2.remove();
-    document.body.prepend(gameScreen3);
-
-    var canvasElement = document.querySelector('canvas');
-
-    var game = new Game(canvasElement);
-    game.start();
-    game.onGameOverCallback(destroyGameScreen);
-    game.onWinCallback(buildWinScreen);
- 
-  }
-*/
   function destroyGameScreen() {
     gameScreen.remove();
     buildGameOverScreen();
   }
 
-  /*
-
-  function destroyGameScreen2() {
-    gameScreen2.remove();
-    buildGameOverScreen();
-  }
-
-  function destroyGameScreen3() {
-    gameScreen3.remove();
-    buildGameOverScreen();
-  }
-
-  */
-
   function buildGameOverScreen() {
     gameOverScreen = buildDom(`
-      <main>
-        <h1>Game Over. You got yourself caught, loser...</h1>
-        <button>Restart</button>
+      <main class="gameover-section">
+        <h1 class="gameover-title">Game Over</h1>
+        <button class="restart-button-gameover">Restart</button>
       </main>  
     `);
 
@@ -148,9 +94,9 @@ function main() {
 
   function buildWinScreen() {
     winScreen = buildDom(`
-      <main>
-        <h1>Congratulations, you made it to the Safezone!!</h1>
-        <button>Restart</button>
+      <main class="win-section">
+        <h1 class="congrats-message">Congratulations, you made it to the Safezone!!</h1>
+        <button class="restart-button-win">Restart</button>
       </main>  
     `);
 

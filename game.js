@@ -143,6 +143,7 @@ Game.prototype.checkCollisionPlayerEnemy = function () {
 Game.prototype.checkCollisionPlayerSafezone = function () {
   if (this.player.collisionSafezone(this.safezones[0])) {
     this.level++;
+    this.enemy.speed += 0.5;
     if(this.level > 3) {
       this.gameIsOver = 2;
     } else {
