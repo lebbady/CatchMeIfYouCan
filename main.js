@@ -11,6 +11,8 @@ function main() {
   var splashMain;
   var startButton;
   var gameScreen;
+  //var gameScreen2;
+  //var gameScreen3;
   var gameOverScreen;
   var restartButton;
   var winScreen;
@@ -43,7 +45,7 @@ function main() {
   function buildGameScreen() {
     gameScreen = buildDom(`
       <main>  
-        <canvas width="1200px" height="600px"></canvas>   
+        <canvas width="1000px" height="500px"></canvas>   
       </main>
     `);
 
@@ -54,15 +56,17 @@ function main() {
     var game = new Game(canvasElement);
     game.start();
     game.onGameOverCallback(destroyGameScreen);
-    game.secondLevel(buildGameScreen2);
+    //game.secondLevel(buildGameScreen2);
+    game.onWinCallback(buildWinScreen);
 
  
   }
 
+  /*
   function buildGameScreen2() {
     gameScreen2 = buildDom(`
       <main>  
-        <canvas width="1200px" height="600px"></canvas>   
+        <canvas width="1000px" height="500px"></canvas>   
       </main>
     `);
 
@@ -73,7 +77,8 @@ function main() {
 
     var game = new Game(canvasElement);
     game.start();
-    game.onGameOverCallback(destroyGameScreen);
+    game.onGameOverCallback(destroyGameScreen2);
+    game.thirdLevel(buildGameScreen3);
 
  
   }
@@ -96,11 +101,13 @@ function main() {
     game.onWinCallback(buildWinScreen);
  
   }
-
+*/
   function destroyGameScreen() {
     gameScreen.remove();
     buildGameOverScreen();
   }
+
+  /*
 
   function destroyGameScreen2() {
     gameScreen2.remove();
@@ -111,6 +118,8 @@ function main() {
     gameScreen3.remove();
     buildGameOverScreen();
   }
+
+  */
 
   function buildGameOverScreen() {
     gameOverScreen = buildDom(`
@@ -145,7 +154,7 @@ function main() {
       </main>  
     `);
 
-    gameScreen3.remove();
+    gameScreen.remove();
     document.body.prepend(winScreen);
 
     restartButton = document.querySelector('button');

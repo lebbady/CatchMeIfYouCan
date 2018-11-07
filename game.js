@@ -3,7 +3,7 @@
 function Game(canvasElement) {
 
   this.player = null;
-  this.enemies = [];
+  this.safezones = [];
   this.canvasElement = canvasElement;
   this.gameIsOver = 0;
   this.initialPositionPlayer = {
@@ -15,11 +15,18 @@ function Game(canvasElement) {
     y: 120
   }
   this.positionSafezone = {
-    x: this.canvasElement.width/2,
+    x: this.canvasElement.width - 100,
     y: this.canvasElement.height/2
   }
+  this.safezoneSize = {
+    width: 20,
+    height: 20
+  }
+  this.safezoneSpeed = 2;
+
   this.xChasing = 0;
   this.yChasing = 0;
+  this.level = 1;
 
 }
 
@@ -32,11 +39,12 @@ Game.prototype.start = function () {
 
 
   var randomSafezoneMovement = function () {
-    this.safezone.xChasing = Math.round(Math.random()* this.canvasElement.width);
-    this.safezone.yChasing = Math.round(Math.random()* this.canvasElement.height);
+    this.safezones[0].xChasing = Math.round(Math.random()* this.canvasElement.width);
+    this.safezones[0].yChasing = Math.round(Math.random()* this.canvasElement.height);
   }.bind(this)
 
   var setIntervalId = setInterval(randomSafezoneMovement,1000);
+  
   
 
 
@@ -46,7 +54,9 @@ Game.prototype.startLoop = function () {
 
   this.player = new Player(this.canvasElement, this.initialPositionPlayer);
   this.enemy = new Enemy(this.canvasElement, this.initialPositionEnemy);
-  this.safezone = new Safezone(this.canvasElement, this.positionSafezone, this.yChasing, this.xChasing)
+  this.safezones.push(new Safezone(this.canvasElement, this.positionSafezone,this.safezoneSize, this.safezoneSpeed, this.yChasing, this.xChasing));
+
+
 
   this.handleKeyDown = function(event) {
     if (event.key === 'ArrowUp') {
@@ -63,7 +73,6 @@ Game.prototype.startLoop = function () {
 
     }
   }.bind(this)
-
 
 
   this.handleKeyUp = function(event) {
@@ -83,7 +92,6 @@ Game.prototype.startLoop = function () {
     this.updateAll();
     this.clearAll();
     this.drawAll();
-
     
     if (this.gameIsOver === 0) {
       requestAnimationFrame(loop);
@@ -102,7 +110,8 @@ Game.prototype.startLoop = function () {
 Game.prototype.drawAll = function() {
   this.player.draw(this.width,this.height,this.color);
   this.enemy.draw();
-  this.safezone.draw();
+
+  this.safezones[0].draw();
 }
 
 Game.prototype.clearAll = function() {
@@ -113,7 +122,7 @@ Game.prototype.clearAll = function() {
 Game.prototype.updateAll = function() {
   this.player.update();
   this.enemy.update(this.player);
-  this.safezone.update(this.player);
+  this.safezones[0].update(this.level);
 }
 
 Game.prototype.onGameOverCallback = function (callback) {
@@ -124,13 +133,6 @@ Game.prototype.finishGame = function () {
   this.gameOverCallback(); 
 }
 
-Game.prototype.secondLevel = function (callback) {
-  this.secondLevelCallback = callback;
-}
-
-Game.prototype.goToSecondLevel = function () {
-  this.secondLevelCallback();
-}
 
 Game.prototype.checkCollisionPlayerEnemy = function () {
   if (this.player.collisionEnemy(this.enemy)) {
@@ -139,8 +141,14 @@ Game.prototype.checkCollisionPlayerEnemy = function () {
 }
 
 Game.prototype.checkCollisionPlayerSafezone = function () {
-  if (this.player.collisionSafezone(this.safezone)) {
-    this.safezone.level ++;
+  if (this.player.collisionSafezone(this.safezones[0])) {
+    this.level++;
+    if(this.level > 3) {
+      this.gameIsOver = 2;
+    } else {
+      this.safezones.pop();
+      this.newSafezone();
+    }
   }
 }
 
@@ -150,6 +158,35 @@ Game.prototype.onWinCallback = function (callback) {
 
 Game.prototype.winGame = function () {
   this.winCallback(); 
+}
+
+Game.prototype.newSafezone = function() {
+  if(this.level === 2){
+    this.positionSafezone = {
+      x: this.canvasElement.width - 10,
+      y:this.canvasElement.height - 10,
+    }
+    this.safezoneSize = {
+      width: 10,
+      height: 10
+    }
+    this.safezoneSpeed = 10;
+    this.safezones.push(new Safezone(this.canvasElement, this.positionSafezone,this.safezoneSize, this.safezoneSpeed, this.yChasing, this.xChasing));
+  }
+  if(this.level === 3) {
+    this.positionSafezone = {
+      x: 400,
+      y:400
+    }
+    this.safezoneSize = {
+      width: 5,
+      height: 5
+    }
+    this.safezoneSpeed = 3;
+    this.safezones.push(new Safezone(this.canvasElement, this.positionSafezone,this.safezoneSize, this.safezoneSpeed, this.yChasing, this.xChasing));
+  }
+
+  
 }
 
 
