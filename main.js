@@ -25,7 +25,7 @@ function main() {
       <main class="buildSplash">
         <h1 class="title">Catch me if you can!</h1>
         <button class="start-button">Start</button>
-        <p class="instructions">Instructions: Use the arrow keys to get to the Safezone before getting caught by your chaser.</p>
+        <p class="instructions">Instructions: Use the arrow keys to get to the Safezone before getting caught by your chaser. Be careful, the Safezone likes playing tricks, so you will have to catch it three times in order to win!</p>
       </main>
     `);
 
@@ -71,7 +71,8 @@ function main() {
     gameOverScreen = buildDom(`
       <main class="gameover-section">
         <h1 class="gameover-title">Game Over</h1>
-        <button class="restart-button-gameover">Restart</button>
+        <div><img class="image-rip" src='./images/rip.jpg' alt='ripimage'></div>
+        <button class="restart-button-gameover">Restart?</button>
       </main>  
     `);
 
@@ -95,8 +96,11 @@ function main() {
   function buildWinScreen() {
     winScreen = buildDom(`
       <main class="win-section">
-        <h1 class="congrats-message">Congratulations, you made it to the Safezone!!</h1>
-        <button class="restart-button-win">Restart</button>
+        <div class="win-div"><img class="image-win" src='./images/winflag.svg' alt='ripimage'></div>
+        <div class="message-button-win">
+          <h1 class="congrats-message">Congratulations, you made it to the Safezone!!</h1>
+          <button class="restart-button-win">Restart</button>
+        </div>
       </main>  
     `);
 
