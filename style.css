@@ -29,7 +29,7 @@ canvas {
 }
 
 .game-screen { 
-  background-color: rgb(61, 120, 155);
+  background-color: rgb(241, 238, 238);
 }
 
 .canvas {
@@ -142,7 +142,7 @@ canvas {
 
 .restart-button-gameover {
   font-family: 'Roboto', sans-serif;
-  color: white;
+  color: rgb(241, 238, 238);
   font-size: 170%;
   height: 10%;
   border: 2px solid rgb(120, 158, 59);
