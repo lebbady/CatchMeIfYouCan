@@ -3,18 +3,23 @@
 function Player (canvasElement, initialPosition) {
   this.x = initialPosition.x;
   this.y = initialPosition.y;
-  this.width = 6;
-  this.height = 6;
+  this.width = 20;
+  this.height = 20;
   this.speed = 5;
   this.directionY = 0;
   this.directionX = 0;
   this.canvasElement = canvasElement;
   this.ctx = this.canvasElement.getContext('2d');
+
+  this.playerImage = new Image ();
+  this.playerImage.src = './images/astronaut.png';
 }
 
 Player.prototype.draw = function (){
-  this.ctx.fillStyle = 'black';
-  this.ctx.fillRect(this.x,this.y,this.width,this.height);
+  //this.ctx.fillStyle = 'black';
+  //this.ctx.fillRect(this.x,this.y,this.width,this.height);
+
+  this.ctx.drawImage(this.playerImage,this.x,this.y, this.width, this.height);
   
 }
 

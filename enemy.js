@@ -3,17 +3,22 @@
 function Enemy (canvasElement, initialPosition) {
   this.x = initialPosition.x;
   this.y = initialPosition.y;
-  this.width = 6;
-  this.height = 6;
+  this.width = 15;
+  this.height = 15;
   this.speed = 2.5;
   
   this.canvasElement = canvasElement;
   this.ctx = this.canvasElement.getContext('2d');
+
+  this.enemyImage = new Image ();
+  this.enemyImage.src = './images/alien.png';
 }
 
 Enemy.prototype.draw = function (){
-  this.ctx.fillStyle = 'red';
-  this.ctx.fillRect(this.x,this.y,this.width,this.height);
+  //this.ctx.fillStyle = 'red';
+  //this.ctx.fillRect(this.x,this.y,this.width,this.height);
+
+  this.ctx.drawImage(this.enemyImage,this.x,this.y, this.width, this.height);
   
 }
 

@@ -13,11 +13,15 @@ function Safezone (canvasElement, position,size,safeSpeed, x, y) {
   this.safezoneDirectionY = -1;
   this.chasingWidth = 0;
   this.chasingHeight = 0;
+
+  this.safezoneImage = new Image ();
+  this.safezoneImage.src = './images/spaceship1.png';
 }
 
 Safezone.prototype.draw = function() {
-  this.ctx.fillStyle = 'green';
-  this.ctx.fillRect(this.x,this.y,this.width,this.height);
+  //this.ctx.fillStyle = 'green';
+  //this.ctx.fillRect(this.x,this.y,this.width,this.height);
+  this.ctx.drawImage(this.safezoneImage,this.x,this.y, this.width, this.height);
 }
 
 Safezone.prototype.randomChasing = function () {

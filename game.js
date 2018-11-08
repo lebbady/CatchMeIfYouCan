@@ -19,14 +19,15 @@ function Game(canvasElement) {
     y: this.canvasElement.height/2
   }
   this.safezoneSize = {
-    width: 20,
-    height: 20
+    width: 50,
+    height: 50
   }
   this.safezoneSpeed = 2;
 
   this.xChasing = 0;
   this.yChasing = 0;
   this.level = 1;
+
 
 }
 
@@ -164,12 +165,12 @@ Game.prototype.winGame = function () {
 Game.prototype.newSafezone = function() {
   if(this.level === 2){
     this.positionSafezone = {
-      x: this.canvasElement.width - 10,
-      y:this.canvasElement.height - 10,
+      x: 0,
+      y: 0
     }
     this.safezoneSize = {
-      width: 10,
-      height: 10
+      width: 35,
+      height: 35
     }
     this.safezoneSpeed = 10;
     this.safezones.push(new Safezone(this.canvasElement, this.positionSafezone,this.safezoneSize, this.safezoneSpeed, this.yChasing, this.xChasing));
@@ -180,8 +181,8 @@ Game.prototype.newSafezone = function() {
       y:400
     }
     this.safezoneSize = {
-      width: 5,
-      height: 5
+      width: 20,
+      height: 20
     }
     this.safezoneSpeed = 3;
     this.safezones.push(new Safezone(this.canvasElement, this.positionSafezone,this.safezoneSize, this.safezoneSpeed, this.yChasing, this.xChasing));
