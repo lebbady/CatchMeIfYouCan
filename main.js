@@ -44,6 +44,7 @@ function main() {
   //game
 
   function buildGameScreen() {
+    document.body.style.cursor = 'none';
     gameScreen = buildDom(`
       <main class="game-screen">  
         <canvas class="canvas" width="1000px" height="500px"></canvas>
@@ -69,6 +70,8 @@ function main() {
   }
 
   function buildGameOverScreen() {
+    document.body.style.cursor = 'default';
+
     gameOverScreen = buildDom(`
       <main class="gameover-section">
         <h1 class="gameover-title">Game Over</h1>

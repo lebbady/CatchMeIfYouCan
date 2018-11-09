@@ -36,7 +36,6 @@ function Game(canvasElement) {
 Game.prototype.start = function () {
 
   this.ctx = this.canvasElement.getContext('2d');
-
   this.startLoop();
   this.gameIsOver = 0;
 
