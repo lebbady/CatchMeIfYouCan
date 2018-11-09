@@ -29,7 +29,7 @@ canvas {
 }
 
 .game-screen { 
-  background-color: rgb(241, 238, 238);
+  background-image: url('./images/space.png');
 }
 
 .canvas {
