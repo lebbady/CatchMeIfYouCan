@@ -46,7 +46,8 @@ function main() {
   function buildGameScreen() {
     gameScreen = buildDom(`
       <main class="game-screen">  
-        <canvas class="canvas" width="1000px" height="500px"></canvas>   
+        <canvas class="canvas" width="1000px" height="500px"></canvas>
+        <audio autoplay="autoplay"><source src='./sound/subatomic.mp3' type="audio/mpeg" /></audio>  
       </main>
     `);
 
