@@ -28,6 +28,8 @@ function Game(canvasElement) {
   this.yChasing = 0;
   this.level = 1;
 
+  this.movementsArray = [];
+
 
 }
 
@@ -60,25 +62,49 @@ Game.prototype.startLoop = function () {
 
 
   this.handleKeyDown = function(event) {
-    if (event.key === 'ArrowUp') {
-      this.player.setDirectionY(-1);
 
-    } else if (event.key === 'ArrowDown') {
-      this.player.setDirectionY(1);
-
-    } else if (event.key === 'ArrowRight') {
-      this.player.setDirectionX(1);
-
-    } else if (event.key === 'ArrowLeft') {
-      this.player.setDirectionX(-1);
-
+    if(!this.movementsArray.includes(event.key)){
+      this.movementsArray.push(event.key);
     }
+
+    this.movementsArray.forEach(function(movement){
+      if (movement === 'ArrowUp') {
+        this.player.setDirectionY(-1);
+      }
+  
+      if (movement === 'ArrowDown') {
+        this.player.setDirectionY(1);
+      }
+  
+      if (movement === 'ArrowRight') {
+        this.player.setDirectionX(1);
+      }
+  
+      if (movement === 'ArrowLeft') {
+        this.player.setDirectionX(-1);
+      }
+    }.bind(this)); 
   }.bind(this)
 
 
   this.handleKeyUp = function(event) {
-    this.player.setDirectionX(0);
-    this.player.setDirectionY(0); 
+
+    var indexOfKey = this.movementsArray.indexOf(event.key);
+    this.movementsArray.splice(indexOfKey, 1);
+
+
+    if (event.key === 'ArrowUp') {
+      this.player.setDirectionY(0); 
+    }
+    if (event.key === 'ArrowDown') {
+      this.player.setDirectionY(0); 
+    }
+    if (event.key === 'ArrowRight') {
+      this.player.setDirectionX(0);
+    }
+    if (event.key === 'ArrowLeft') {
+      this.player.setDirectionX(0);
+    } 
   }.bind(this)
   
 

@@ -25,7 +25,7 @@ function main() {
       <main class="buildSplash">
         <h1 class="title">Catch me if you can!</h1>
         <button class="start-button">Start</button>
-        <p class="instructions">Instructions: Use the arrow keys to get to the Safezone before getting caught by your chaser. Be careful, the Safezone likes playing tricks, so you will have to catch it three times in order to win!</p>
+        <p class="instructions">Instructions: Use the arrow keys to get to the Spaceship before getting caught by the alien. Be careful, the Spaceship likes playing tricks, so you will have to catch it three times in order to win!</p>
       </main>
     `);
 
