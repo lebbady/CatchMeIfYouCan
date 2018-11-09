@@ -50,6 +50,7 @@ Player.prototype.setDirectionX = function (direction) {
   this.directionX = direction;
 }
 
+// Is this still being used?
 Player.prototype.setDirection = function(direction) {
   this.direction = direction;
 }

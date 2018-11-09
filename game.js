@@ -45,6 +45,7 @@ Game.prototype.start = function () {
     this.safezones[0].yChasing = Math.round(Math.random()* this.canvasElement.height);
   }.bind(this)
 
+  // Where is this being cleared?
   var setIntervalId = setInterval(randomSafezoneMovement,1000);
   
   
@@ -137,6 +138,7 @@ Game.prototype.drawAll = function() {
   this.player.draw(this.width,this.height,this.color);
   this.enemy.draw();
 
+  // probably doing this because safezones could be an array of multiple safezones... When that is the case you still do a forEach to draw each one of them so it does not matter if you have 1 or 100. It will work !
   this.safezones[0].draw();
 }
 
