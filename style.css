@@ -48,10 +48,15 @@ canvas {
   width: 100%;
   height: 100%;
   position: absolute;
+  background-color: rgb(240, 234, 234);
 }
 
 .image-rip {
-  height: 65%;
+  height: 60%;
+}
+
+.image-rip-adjust {
+  height: 100%;
 }
 
 .gameover-title {
@@ -63,6 +68,10 @@ canvas {
 .congrats-message {
   font-family: 'Permanent Marker', cursive;
   font-size: 300%;
+}
+
+.win-section {
+ background-color:  rgb(240, 234, 234);
 }
 
 
@@ -107,7 +116,8 @@ canvas {
   position: absolute;
   display: grid;
   grid-template-columns: 40% 60%;
-  margin: 5%;
+  padding: 5%;
+  height: 100%;
 }
 
 .image-win {

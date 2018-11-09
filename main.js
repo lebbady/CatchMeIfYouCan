@@ -72,8 +72,8 @@ function main() {
     gameOverScreen = buildDom(`
       <main class="gameover-section">
         <h1 class="gameover-title">Game Over</h1>
-        <div><img class="image-rip" src='./images/rip.jpg' alt='ripimage'></div>
-        <button class="restart-button-gameover">Restart?</button>
+        <div class="image-rip"><img class="image-rip-adjust" src='./images/deadastronaut.png' alt='ripimage'></div>
+        <button class="restart-button-gameover">Restart</button>
       </main>  
     `);
 
@@ -99,7 +99,7 @@ function main() {
       <main class="win-section">
         <div class="win-div"><img class="image-win" src='./images/winflag.svg' alt='ripimage'></div>
         <div class="message-button-win">
-          <h1 class="congrats-message">Congratulations, you made it to the Safezone!!</h1>
+          <h1 class="congrats-message">Congratulations, you made it to the Spaceship!!</h1>
           <button class="restart-button-win">Restart</button>
         </div>
       </main>  
