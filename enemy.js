@@ -15,9 +15,6 @@ function Enemy (canvasElement, initialPosition) {
 }
 
 Enemy.prototype.draw = function () {
-  // this.ctx.fillStyle = 'red';
-  // this.ctx.fillRect(this.x,this.y,this.width,this.height);
-
   this.ctx.drawImage(this.enemyImage, this.x, this.y, this.width, this.height);
 };
 

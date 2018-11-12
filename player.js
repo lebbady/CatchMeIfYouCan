@@ -52,19 +52,19 @@ Player.prototype.setDirection = function (direction) {
 };
 
 Player.prototype.collisionEnemy = function (enemy) {
-  var collisionTop = this.y <= enemy.y + enemy.height;
-  var collisionBottom = this.y + this.height >= enemy.y;
-  var collisionLeft = this.x <= enemy.x + enemy.width;
-  var collisionRight = this.x + this.width >= enemy.x;
+  const collisionTop = this.y <= enemy.y + enemy.height;
+  const collisionBottom = this.y + this.height >= enemy.y;
+  const collisionLeft = this.x <= enemy.x + enemy.width;
+  const collisionRight = this.x + this.width >= enemy.x;
 
   return collisionTop && collisionBottom && collisionLeft && collisionRight;
 };
 
 Player.prototype.collisionSafezone = function (safezone) {
-  var collisionTopSafe = this.y <= safezone.y + (safezone.height);
-  var collisionBottomSafe = this.y + (this.height) >= safezone.y;
-  var collisionLeftSafe = this.x <= safezone.x + (safezone.width);
-  var collisionRightSafe = this.x + (this.width) >= safezone.x;
+  const collisionTopSafe = this.y <= safezone.y + (safezone.height);
+  const collisionBottomSafe = this.y + (this.height) >= safezone.y;
+  const collisionLeftSafe = this.x <= safezone.x + (safezone.width);
+  const collisionRightSafe = this.x + (this.width) >= safezone.x;
 
   return collisionTopSafe && collisionBottomSafe && collisionLeftSafe && collisionRightSafe;
 };

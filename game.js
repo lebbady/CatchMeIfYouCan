@@ -40,7 +40,7 @@ Game.prototype.start = function () {
     this.safezones[0].yChasing = Math.round(Math.random() * this.canvasElement.height);
   }.bind(this);
 
-  var setIntervalId = setInterval(randomSafezoneMovement, 1000);
+  const setIntervalId = setInterval(randomSafezoneMovement, 1000);
 };
 
 Game.prototype.startLoop = function () {
@@ -73,7 +73,7 @@ Game.prototype.startLoop = function () {
   }.bind(this);
 
   this.handleKeyUp = function (event) {
-    var indexOfKey = this.movementsArray.indexOf(event.key);
+    const indexOfKey = this.movementsArray.indexOf(event.key);
     this.movementsArray.splice(indexOfKey, 1);
 
     if (event.key === 'ArrowUp') {
@@ -90,12 +90,10 @@ Game.prototype.startLoop = function () {
     }
   }.bind(this);
 
-
-
   document.addEventListener('keydown', this.handleKeyDown);
   document.addEventListener('keyup', this.handleKeyUp);
 
-  var loop = function () {
+  const loop = function () {
     this.checkCollisionPlayerSafezone();
     this.checkCollisionPlayerEnemy();
     this.updateAll();
