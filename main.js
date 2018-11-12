@@ -1,26 +1,24 @@
 'use strict';
 
-function buildDom(html) {
+function buildDom (html) {
   var div = document.createElement('div');
   div.innerHTML = html;
   return div.children[0];
 }
 
-function main() {
-
+function main () {
   var splashMain;
   var startButton;
   var gameScreen;
-  //var gameScreen2;
-  //var gameScreen3;
+  // var gameScreen2;
+  // var gameScreen3;
   var gameOverScreen;
   var restartButton;
   var winScreen;
 
   // splash
 
-  function buildSplash() {
-    
+  function buildSplash () {
     splashMain = buildDom(`
       <main class="buildSplash">
         <h1 class="title">Catch me if you can!</h1>
@@ -34,16 +32,16 @@ function main() {
     startButton.addEventListener('click', destroySplash);
   }
 
-  function destroySplash() {
+  function destroySplash () {
     splashMain.remove();
     startButton.removeEventListener('click', destroySplash);
 
     buildGameScreen();
   }
 
-  //game
+  // game
 
-  function buildGameScreen() {
+  function buildGameScreen () {
     document.body.style.cursor = 'none';
     gameScreen = buildDom(`
       <main class="game-screen">  
@@ -60,16 +58,14 @@ function main() {
     game.start();
     game.onGameOverCallback(destroyGameScreen);
     game.onWinCallback(buildWinScreen);
-
- 
   }
 
-  function destroyGameScreen() {
+  function destroyGameScreen () {
     gameScreen.remove();
     buildGameOverScreen();
   }
 
-  function buildGameOverScreen() {
+  function buildGameOverScreen () {
     document.body.style.cursor = 'default';
 
     gameOverScreen = buildDom(`
@@ -80,24 +76,21 @@ function main() {
       </main>  
     `);
 
-
     document.body.prepend(gameOverScreen);
 
     restartButton = document.querySelector('button');
 
     restartButton.addEventListener('click', destroyGameOverScreen);
-
   }
 
-  function destroyGameOverScreen() {
-    
+  function destroyGameOverScreen () {
     gameOverScreen.remove();
-    restartButton.removeEventListener('click', destroyGameOverScreen)
+    restartButton.removeEventListener('click', destroyGameOverScreen);
 
     buildGameScreen();
   }
 
-  function buildWinScreen() {
+  function buildWinScreen () {
     winScreen = buildDom(`
       <main class="win-section">
         <div class="win-div"><img class="image-win" src='./images/winflag.svg' alt='ripimage'></div>
@@ -116,18 +109,16 @@ function main() {
     restartButton.addEventListener('click', destroyWinScreen);
   }
 
-  function destroyWinScreen() {
-    
+  function destroyWinScreen () {
     winScreen.remove();
     restartButton.removeEventListener('click', destroyWinScreen);
 
     buildGameScreen();
   }
-  
-  
+
+
 
   buildSplash();
-
 }
 
 window.addEventListener('load', main);
