@@ -11,7 +11,8 @@
       "Game": false,
       "Enemy": false,
       "Safezone": false,
-      "Player": false
+      "Player": false,
+      "Image": false
     },
     "rules": {
       "indent": [
